@@ -50,9 +50,13 @@ public class strings {
 //        System.out.println(n.lastIndexOf("a"));
 
     // Methods
-        String name = "Manan Mehta";
-        name = name.toUpperCase();
-        System.out.println(Arrays.toString(name.toCharArray()));
+        String name = "A man, a plan, a canal: Panama";
+//        name = name.toUpperCase();
+//        System.out.println(Arrays.toString(name.toCharArray()));
+//        System.out.println(Arrays.toString(name.split(" ")));
+        String ans = name.replaceAll("[^a-zA-Z]","");
+        ans = ans.toLowerCase();
+        System.out.println(ans.strip());
     }
 
 }
