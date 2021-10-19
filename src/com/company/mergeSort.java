@@ -5,8 +5,43 @@ import java.util.Arrays;
 public class mergeSort {
     public static void main(String[] args) {
         int[] arr = {34, 31, 14, 4, 32, 3, 244, 3234};
-        arr = mergeSortFunc(arr);
+        mergeSortInPlace(arr, 0, arr.length);
         System.out.println(Arrays.toString(arr));
+    }
+
+    static void mergeSortInPlace(int[] arr, int s, int e) {
+        if (e - s == 1) return;
+        int mid = (s + e) / 2;
+        mergeSortInPlace(arr, s, mid);
+        mergeSortInPlace(arr, mid, e);
+        mergeInPlace(arr, s, mid, e);
+    }
+
+    static void mergeInPlace(int[] arr, int s, int m, int e) {
+        int[] mix = new int[e - s];
+        int i = s, j = m, k = 0;
+        while (i < m && j < e) {
+            if (arr[i] < arr[j]) {
+                mix[k] = arr[i];
+                k++;
+                i++;
+            } else {
+                mix[k] = arr[j];
+                k++;
+                j++;
+            }
+        }
+        while (i < m) {
+            mix[k] = arr[i];
+            k++;
+            i++;
+        }
+        while (j < e) {
+            mix[k] = arr[j];
+            k++;
+            j++;
+        }
+        System.arraycopy(mix, 0, arr, s, mix.length);
     }
 
     static int[] merge(int[] first, int[] second) {
