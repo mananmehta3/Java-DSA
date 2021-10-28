@@ -1,8 +1,24 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class recursion {
     public static void main(String[] args) {
-        System.out.println(fibbonacci(6));
+        System.out.println(dice("", 1).size());
+    }
+
+    static List<String> dice(String p, int r) {
+        if (r == 0) {
+            List<String> temp = new ArrayList<>();
+            temp.add(p);
+            return temp;
+        }
+        List<String> ans = new ArrayList<>();
+        for (int i = 1; i <= 6 && i <= r; i++) {
+            ans.addAll(dice(p + i, r - i));
+        }
+        return ans;
     }
 
     static int fibbonacci(int n) {
