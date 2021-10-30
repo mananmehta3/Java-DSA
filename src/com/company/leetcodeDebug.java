@@ -8,7 +8,7 @@ import java.util.List;
 public class leetcodeDebug {
 
     public static void main(String[] args) {
-        System.out.println(findComplement(0));
+        System.out.println(longestDupSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"));
     }
 
     public static int findComplement(int num) {
@@ -21,6 +21,33 @@ public class leetcodeDebug {
             if (x.charAt(i) == '0') ans += (multiplier);
             multiplier *= 2;
         }
+        return ans;
+    }
+
+    public static String longestDupSubstring(String s) {
+        int n = s.length();
+        System.out.println(n);
+        String ans="";
+        int maxCount = 0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(s.charAt(i)==s.charAt(j)){
+                    StringBuilder sol = new StringBuilder();
+                    int x = i, y = j, count = 0;
+                    while(y<n && s.charAt(x)==s.charAt(y)){
+                        sol.append(s.charAt(x));
+                        x++;
+                        y++;
+                        count++;
+                    }
+                    if(count>maxCount) {
+                        ans = sol.toString();
+                        maxCount = count;
+                    }
+                }
+            }
+        }
+        System.out.println(ans.length());
         return ans;
     }
 
@@ -59,15 +86,15 @@ public class leetcodeDebug {
     public static int oddCells(int m, int n, int[][] mat) {
         int[][] arr = new int[m][n];
         int x = mat.length;
-        for (int i = 0; i < x; i++) {
-            int temp = mat[i][0];
+        for (int[] ints : mat) {
+            int temp = ints[0];
             for (int j = 0; j < n; j++) {
                 arr[temp][j]++;
             }
         }
         print2D(arr);
-        for (int i = 0; i < x; i++) {
-            int temp = mat[i][1];
+        for (int[] ints : mat) {
+            int temp = ints[1];
             for (int j = 0; j < m; j++) {
                 arr[j][temp]++;
             }
@@ -82,13 +109,12 @@ public class leetcodeDebug {
         return count;
     }
 
-    public static void print2D(int mat[][]) {
+    public static void print2D(int[][] mat) {
         // Loop through all rows
-        for (int i = 0; i < mat.length; i++) {
+        for (int[] ints : mat) {
 
             // Loop through all elements of current row
-            for (int j = 0; j < mat[i].length; j++)
-                System.out.print(mat[i][j] + " ");
+            for (int anInt : ints) System.out.print(anInt + " ");
 
             System.out.println();
         }
