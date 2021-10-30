@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Recursion;
 
 public class recursionQuestions {
     public static void main(String[] args) {
