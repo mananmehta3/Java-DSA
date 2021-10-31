@@ -11,9 +11,10 @@ public class backtracking {
     public static void main(String[] args) {
         int[][] arr = {
                 {0, 1, 0, 0, 0},
+                {0, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0},
                 {0, 0, 0, 1, 0},
-                {0, 1, 0, 0, 0},
-                {0, 0, 0, 1, 0}
+                {1, 1, 1, 1, 0}
 //                {0, 0, 0},
 //                {0, 0, 0},
 //                {0, 0, 0}
@@ -34,7 +35,7 @@ public class backtracking {
     }
 
     static void printingPathWithObstacleAllowingAllDirectionPrint(int[][] arr, int r, int c, String a, char[][] path) {
-        if (r == arr.length - 1 && c == arr[0].length - 1) {
+        if (r == arr.length - 1 && c == arr[0].length - 1 && arr[r][c]==0) {
             path[r][c] = 'x';
             print2D(path);
             System.out.println(a);
