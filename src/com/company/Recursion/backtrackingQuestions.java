@@ -13,8 +13,8 @@ public class backtrackingQuestions {
                 {0, 0, 0, 0, 0, 0, 0, 7, 4},
                 {0, 0, 5, 2, 0, 6, 3, 0, 0}
         };
-        sudokoSolver(board);
-        print2d(board);
+        if(sudokoSolver(board)) print2d(board);
+        else System.out.println(-1);
     }
 
     private static void print2d(int[][] board) {
