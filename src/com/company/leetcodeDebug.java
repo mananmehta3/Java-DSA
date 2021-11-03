@@ -8,7 +8,31 @@ import java.util.List;
 public class leetcodeDebug {
 
     public static void main(String[] args) {
-        System.out.println(longestDupSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"));
+        int[] arr = {2, 3, 5};
+        System.out.println(combinationSum(arr, 8));
+    }
+
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> nums = new ArrayList<>();
+        return cSum(candidates, target, 0, nums);
+    }
+
+    static List<List<Integer>> cSum(int[] arr, int t, int i, List<Integer> nums) {
+        if (t == 0) {
+            List<List<Integer>> temp = new ArrayList<>();
+            temp.add(nums);
+            return temp;
+        }
+        if (i == arr.length) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> ans = new ArrayList<>();
+        if (arr[i] <= t) {
+            nums.add(arr[i]);
+            t -= arr[i];
+            ans.addAll(cSum(arr, t, i, nums));
+        }
+        return ans;
     }
 
     public static int findComplement(int num) {
@@ -27,20 +51,20 @@ public class leetcodeDebug {
     public static String longestDupSubstring(String s) {
         int n = s.length();
         System.out.println(n);
-        String ans="";
+        String ans = "";
         int maxCount = 0;
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                if(s.charAt(i)==s.charAt(j)){
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (s.charAt(i) == s.charAt(j)) {
                     StringBuilder sol = new StringBuilder();
                     int x = i, y = j, count = 0;
-                    while(y<n && s.charAt(x)==s.charAt(y)){
+                    while (y < n && s.charAt(x) == s.charAt(y)) {
                         sol.append(s.charAt(x));
                         x++;
                         y++;
                         count++;
                     }
-                    if(count>maxCount) {
+                    if (count > maxCount) {
                         ans = sol.toString();
                         maxCount = count;
                     }
@@ -112,10 +136,8 @@ public class leetcodeDebug {
     public static void print2D(int[][] mat) {
         // Loop through all rows
         for (int[] ints : mat) {
-
             // Loop through all elements of current row
             for (int anInt : ints) System.out.print(anInt + " ");
-
             System.out.println();
         }
     }
