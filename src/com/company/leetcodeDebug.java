@@ -8,8 +8,26 @@ import java.util.List;
 public class leetcodeDebug {
 
     public static void main(String[] args) {
-        int[] arr = {2, 3, 5};
-        System.out.println(combinationSum(arr, 8));
+        System.out.println(findKthBit(20,1));
+    }
+
+    public static char findKthBit(int n, int k) {
+        String s = binaryString(n, "0");
+        return s.charAt(k-1);
+    }
+
+    static String binaryString(int n, String s) {
+        if (n == 1) return s;
+        return binaryString(n - 1, s + "1" + reverseInvert(s));
+    }
+
+    static String reverseInvert(String s) {
+        StringBuilder st = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == '1') st.append('0');
+            else st.append('1');
+        }
+        return st.toString();
     }
 
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
