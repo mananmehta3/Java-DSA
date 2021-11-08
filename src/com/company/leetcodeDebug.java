@@ -6,14 +6,88 @@ import java.util.Collections;
 import java.util.List;
 
 public class leetcodeDebug {
-
     public static void main(String[] args) {
-        System.out.println(findKthBit(20,1));
+        System.out.println(multiply("9", "9"));
+    }
+
+    static String findSum(String str1, String str2) {
+        // Before proceeding further, make sure length
+        // of str2 is larger.
+        if (str1.length() > str2.length()) {
+            String t = str1;
+            str1 = str2;
+            str2 = t;
+        }
+
+        // Take an empty String for storing result
+        StringBuilder str = new StringBuilder();
+
+        // Calculate length of both String
+        int n1 = str1.length(), n2 = str2.length();
+
+        // Reverse both of Strings
+        str1 = new StringBuilder(str1).reverse().toString();
+        str2 = new StringBuilder(str2).reverse().toString();
+
+        int carry = 0;
+        for (int i = 0; i < n1; i++) {
+            // Do school mathematics, compute sum of
+            // current digits and carry
+            int sum = ((str1.charAt(i) - '0') +
+                    (str2.charAt(i) - '0') + carry);
+            str.append((char) (sum % 10 + '0'));
+
+            // Calculate carry for next step
+            carry = sum / 10;
+        }
+
+        // Add remaining digits of larger number
+        for (int i = n1; i < n2; i++) {
+            int sum = ((str2.charAt(i) - '0') + carry);
+            str.append((char) (sum % 10 + '0'));
+            carry = sum / 10;
+        }
+
+        // Add remaining carry
+        if (carry > 0)
+            str.append((char) (carry + '0'));
+
+        // reverse resultant String
+        str = new StringBuilder(new StringBuilder(str.toString()).reverse().toString());
+        return str.toString();
+    }
+
+    public static String multiply(String s1, String s2) {
+        int n = s1.length();
+        int m = s2.length();
+        String sum = "";
+        for (int i = m - 1; i >= 0; i--) {
+            int carry = 0;
+            StringBuilder prevA = new StringBuilder();
+            char ch = s2.charAt(i);
+            for (int j = n - 1; j >= 0; j--) {
+                char c = s1.charAt(j);
+                int temp = (ch - '0') * (c - '0') + carry;
+                carry = temp / 10;
+                temp %= 10;
+                prevA.insert(0, (char) (temp + '0'));
+            }
+            if (carry > 0) {
+                char man = (char) (carry + '0');
+                prevA.insert(0, man);
+            }
+            int count = m - i - 1;
+            while (count-- > 0) {
+                prevA.append('0');
+            }
+            sum = findSum(sum, prevA.toString());
+        }
+        return sum;
     }
 
     public static char findKthBit(int n, int k) {
         String s = binaryString(n, "0");
-        return s.charAt(k-1);
+        return s.charAt(k - 1);
     }
 
     static String binaryString(int n, String s) {
