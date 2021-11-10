@@ -7,7 +7,35 @@ import java.util.List;
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        System.out.println(multiply("9", "9"));
+        System.out.println(convert("PAYPALISHIRING", 3));
+    }
+
+
+    public static String convert(String s, int n) {
+        String[] ans = new String[n];
+        for(int i=0;i<n;i++){
+            ans[i]="";
+        }
+        int count = 0;
+        int l = s.length();
+        int i = 0, j = -1;
+        while(i<l){
+            if(count%2==0) j++;
+            else j--;
+            if(j>=0 && j<n) ans[j]+=(s.charAt(i));
+            i++;
+            if(j==n-1){
+                count++;
+            }
+            if(j==0 && count!=0){
+                count++;
+            }
+        }
+        StringBuilder sol = new StringBuilder();
+        for (i = 0; i < n; i++) {
+            sol.append(ans[i]);
+        }
+        return sol.toString();
     }
 
     static String findSum(String str1, String str2) {
