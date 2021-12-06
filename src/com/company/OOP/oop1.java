@@ -1,6 +1,6 @@
 package com.company.OOP;
 
-public class oopIntroduction {
+public class oop1 {
     public static void main(String[] args) {
         Pen pen1 = new Pen("black", "ballpoint");
         Pen pen2 = new Pen(pen1);
