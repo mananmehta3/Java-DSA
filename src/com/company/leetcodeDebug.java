@@ -8,24 +8,19 @@ import java.util.List;
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11};
-        System.out.println(solve(arr, 12));
+        int[] arr = {4, 4, 12, 12, 15, 19, 23, 24, 34, 42};
+        System.out.println(solve(arr, -1));
     }
 
-    public static int solve(int[] A, int B) {
-        int s = 0, e = A.length - 1, ans;
-        while(s<e){
-            int mid = s + (e-s)/2;
-            if(A[mid]>A[mid+1]){
-                e = mid;
+    public static int solve(int[] arr, int B) {
+        int s = 1, e = arr.length;
+        if (arr[e - 1] <= B) return arr.length;
+            while (s < e) {
+                int mid = s + (e - s) / 2;
+                if (arr[mid - 1] <= B) s = mid + 1;
+                else e = mid;
             }
-            else {
-                s = mid+1;
-            }
-        }
-        ans = binAsc(A,0,s,B);
-        if(ans==-1) ans = binDes(A,s,A.length-1,B);
-        return ans;
+        return s - 1;
     }
 
     static int binAsc(int[] arr, int s, int e, int t) {
