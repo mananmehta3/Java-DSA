@@ -8,7 +8,44 @@ import java.util.List;
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        System.out.println(convert("Manan", 2));
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11};
+        System.out.println(solve(arr, 12));
+    }
+
+    public static int solve(int[] A, int B) {
+        int s = 0, e = A.length - 1, ans;
+        while(s<e){
+            int mid = s + (e-s)/2;
+            if(A[mid]>A[mid+1]){
+                e = mid;
+            }
+            else {
+                s = mid+1;
+            }
+        }
+        ans = binAsc(A,0,s,B);
+        if(ans==-1) ans = binDes(A,s,A.length-1,B);
+        return ans;
+    }
+
+    static int binAsc(int[] arr, int s, int e, int t) {
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (arr[mid] == t) return mid;
+            else if (arr[mid] > t) e = mid - 1;
+            else s = mid + 1;
+        }
+        return -1;
+    }
+
+    static int binDes(int[] arr, int s, int e, int t) {
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (arr[mid] == t) return mid;
+            else if (arr[mid] > t) s = mid + 1;
+            else e = mid - 1;
+        }
+        return -1;
     }
 
     public static String convert(String s, int n) {

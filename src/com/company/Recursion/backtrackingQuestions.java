@@ -13,7 +13,7 @@ public class backtrackingQuestions {
                 {0, 0, 0, 0, 0, 0, 0, 7, 4},
                 {0, 0, 5, 2, 0, 6, 3, 0, 0}
         };
-        if(sudokoSolver(board)) print2d(board);
+        if (sudokuSolver(board)) print2d(board);
         else System.out.println(-1);
     }
 
@@ -26,7 +26,7 @@ public class backtrackingQuestions {
         }
     }
 
-    static boolean sudokoSolver(int[][] board) {
+    static boolean sudokuSolver(int[][] board) {
         int n = board.length;
         int r = -1;
         int c = -1;
@@ -46,7 +46,7 @@ public class backtrackingQuestions {
         for (int i = 1; i <= 9; i++) {
             if (isSafe(board, r, c, i)) {
                 board[r][c] = i;
-                if (sudokoSolver(board)) return true;
+                if (sudokuSolver(board)) return true;
                 else board[r][c] = 0;
             }
         }
