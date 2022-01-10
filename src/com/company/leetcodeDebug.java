@@ -3,13 +3,30 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        int[] arr = {4, 4, 12, 12, 15, 19, 23, 24, 34, 42};
-        System.out.println(solve(arr, -1));
+        System.out.println(removeDuplicates("abbaca"));
+    }
+
+    public static String removeDuplicates(String s) {
+        Stack<Character> st = new Stack<>();
+        int n = s.length();
+        st.push(s.charAt(0));
+        for(int i=1;i<n;i++){
+            if(!st.isEmpty() && st.peek()==s.charAt(i)){
+                st.pop();
+            }
+            else st.push(s.charAt(i));
+        }
+        StringBuilder ans = new StringBuilder();
+        while(!st.isEmpty()){
+            ans.append(st.peek());
+            st.pop();
+        }
+        return ans.reverse().toString();
     }
 
     public static int solve(int[] arr, int B) {
