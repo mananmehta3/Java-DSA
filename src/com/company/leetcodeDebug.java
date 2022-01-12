@@ -5,24 +5,39 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.*;
 
+class Arithmetic {
+    public int add(int i, int i1) {
+        return i + i1;
+    }
+}
+
+class Adder extends Arithmetic {
+
+}
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        System.out.println(removeDuplicates("abbaca"));
+        // Create a new Adder object
+        Adder a = new Adder();
+
+        // Print the name of the superclass on a new line
+        System.out.println("My superclass is: " + a.getClass().getSuperclass().getName());
+
+        // Print the result of 3 calls to Adder's `add(int,int)` method as 3 space-separated integers:
+        System.out.print(a.add(10, 32) + " " + a.add(10, 3) + " " + a.add(10, 10) + "\n");
     }
 
     public static String removeDuplicates(String s) {
         Stack<Character> st = new Stack<>();
         int n = s.length();
         st.push(s.charAt(0));
-        for(int i=1;i<n;i++){
-            if(!st.isEmpty() && st.peek()==s.charAt(i)){
+        for (int i = 1; i < n; i++) {
+            if (!st.isEmpty() && st.peek() == s.charAt(i)) {
                 st.pop();
-            }
-            else st.push(s.charAt(i));
+            } else st.push(s.charAt(i));
         }
         StringBuilder ans = new StringBuilder();
-        while(!st.isEmpty()){
+        while (!st.isEmpty()) {
             ans.append(st.peek());
             st.pop();
         }
@@ -32,11 +47,11 @@ public class leetcodeDebug {
     public static int solve(int[] arr, int B) {
         int s = 1, e = arr.length;
         if (arr[e - 1] <= B) return arr.length;
-            while (s < e) {
-                int mid = s + (e - s) / 2;
-                if (arr[mid - 1] <= B) s = mid + 1;
-                else e = mid;
-            }
+        while (s < e) {
+            int mid = s + (e - s) / 2;
+            if (arr[mid - 1] <= B) s = mid + 1;
+            else e = mid;
+        }
         return s - 1;
     }
 
