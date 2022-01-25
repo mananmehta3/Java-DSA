@@ -1,17 +1,22 @@
 package com.company.OOP;
 
-public class oop1 {
-    public static void main(String[] args) {
-        Pen pen1 = new Pen("black", "ballpoint");
-        Pen pen2 = new Pen(pen1);
-        pen1.printType();
-        pen2.printType();
-    }
-}
+public class Pen {
 
-class Pen {
+    static class Test {
+        String name;
+
+        public Test(String name) {
+            this.name = name;
+        }
+    }
+
     String color;
-    String type; // ballpoint, gel
+    String type; // ballpoint, gel, glitter
+    public static int count = 0;
+
+    static {
+        System.out.println("In static");
+    }
 
     public Pen() {
         this("blue", "gel");
@@ -20,11 +25,13 @@ class Pen {
     public Pen(Pen p) {
         this.color = p.color;
         this.type = p.type;
+        Pen.count += 1;
     }
 
     public Pen(String color, String type) {
         this.color = color;
         this.type = type;
+        Pen.count += 1;
     }
 
     public void printType() {
