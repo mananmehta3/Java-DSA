@@ -1,30 +1,31 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.*;
 
-class Arithmetic {
-    public int add(int i, int i1) {
-        return i + i1;
-    }
-}
-
-class Adder extends Arithmetic {
-
-}
-
 public class leetcodeDebug {
     public static void main(String[] args) {
-        // Create a new Adder object
-        Adder a = new Adder();
+        System.out.print(sequentialDigits(100, 300));
+    }
 
-        // Print the name of the superclass on a new line
-        System.out.println("My superclass is: " + a.getClass().getSuperclass().getName());
+    public static List<Integer> sequentialDigits(int low, int high) {
+        List<Integer> digits = new ArrayList<>();
+        for (int i = 1; i <= 9; i++) {
+            digits.addAll(helper(new ArrayList<>(), low, high, i));
+        }
+        Collections.sort(digits);
+        return digits;
+    }
 
-        // Print the result of 3 calls to Adder's `add(int,int)` method as 3 space-separated integers:
-        System.out.print(a.add(10, 32) + " " + a.add(10, 3) + " " + a.add(10, 10) + "\n");
+    static List<Integer> helper(List<Integer> digits, int l, int h, int i) {
+        if (i >= l && i <= h) {
+            digits.add(i);
+        }
+        if (i > h) return digits;
+        int x = (i % 10) + 1;
+        i = (i * 10) + x;
+        return helper(digits, l, h, i);
     }
 
     public static String removeDuplicates(String s) {
