@@ -4,7 +4,6 @@ import static com.company.OOP.Pen.count;
 
 public class oops {
     public static void main(String[] args) {
-        Pen.Test a = new Pen.Test("Rest");
         System.out.println(count);
         Pen pen1 = new Pen("yellow","glitter");
         Pen pen2 = new Pen();

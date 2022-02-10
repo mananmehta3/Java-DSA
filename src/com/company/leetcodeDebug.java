@@ -6,7 +6,47 @@ import java.util.*;
 
 public class leetcodeDebug {
     public static void main(String[] args) {
-        System.out.print(sequentialDigits(100, 300));
+        int[] arr = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        System.out.println(subarraySum(arr, 0));
+    }
+
+    public static int subarraySum(int[] arr, int k) {
+        int n = arr.length;
+        int count = 0;
+        for (int i = 1; i < n; i++) {
+            arr[i] += arr[i - 1];
+        }
+        // System.out.println(Arrays.toString(arr));
+        for (int i = n - 1; i > 0; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[i] - arr[j] == k) {
+                    count++;
+                    // System.out.println(i + " "+ j + " "+count+" ");
+                }
+            }
+        }
+        for (int j : arr) {
+            if (j == k) count++;
+        }
+        return count;
+    }
+
+    public static int longestValidParentheses(String s) {
+        int n = s.length();
+        Stack<Character> st = new Stack<>();
+        int currL = 0, maxL = 0;
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') st.push('(');
+            else if (s.charAt(i) == ')') {
+                if (!st.isEmpty() && st.peek() == '(') {
+                    currL += 2;
+                    st.pop();
+                }
+                if (currL > maxL) maxL = currL;
+                else if (st.isEmpty()) currL = 0;
+            }
+        }
+        return maxL;
     }
 
     public static List<Integer> sequentialDigits(int low, int high) {
