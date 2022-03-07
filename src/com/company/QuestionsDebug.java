@@ -4,10 +4,41 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.*;
 
-public class leetcodeDebug {
-    public static void main(String[] args) {
-        int[] arr = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        System.out.println(subarraySum(arr, 0));
+public class QuestionsDebug {
+    public static void main(String[] args) throws java.lang.Exception {
+        int[] arr = {3, 4, -1, 1};
+        System.out.println(firstMissingPositive(arr));
+    }
+
+    public static int firstMissingPositive(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if (arr[i] > 0 && arr[i] <= arr.length && arr[i] != arr[correct]) {
+                swap(arr, i, correct);
+            } else {
+                i++;
+            }
+        }
+        for (int index = 0; index < arr.length; index++) {
+            if (arr[index] != index + 1) {
+                return index + 1;
+            }
+        }
+        return arr.length + 1;
+    }
+
+    static void swap(int[] arr, int first, int second) {
+        int temp = arr[first];
+        arr[first] = arr[second];
+        arr[second] = temp;
+    }
+
+    static int match(List<Integer> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) == i + 1) return i;
+        }
+        return -1;
     }
 
     public static int subarraySum(int[] arr, int k) {
