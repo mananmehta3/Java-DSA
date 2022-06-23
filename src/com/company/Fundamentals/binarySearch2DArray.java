@@ -1,16 +1,16 @@
-package com.company;
+package com.company.Fundamentals;
 
 import java.util.Arrays;
 
 public class binarySearch2DArray {
     public static void main(String[] args) {
-        int arr[][] = {
+        int[][] arr = {
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
                 {9, 10, 11, 12},
                 {13, 14, 15, 16}
         };
-        System.out.println(Arrays.toString(search(arr, 17)));
+        System.out.println(Arrays.toString(search(arr, 11)));
     }
 
     static int[] binarySearch(int[][] mat, int r, int cS, int cE, int t) {

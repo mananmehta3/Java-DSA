@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Fundamentals;
 
 public class patterns {
     public static void main(String[] args) {
@@ -9,8 +9,9 @@ public class patterns {
         n = n * 2;
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < n; j++) {
-                int down = i, left = j, right = n - j, up = n - i;
-                System.out.print((n / 2 - Math.min(down, Math.min(left, Math.min(right, up))) + 1) + " ");
+                int right = n - j;
+                int up = n - i;
+                System.out.print((n / 2 - Math.min(i, Math.min(j, Math.min(right, up))) + 1) + " ");
             }
             System.out.println();
         }

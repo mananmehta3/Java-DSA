@@ -1,8 +1,4 @@
-package com.company;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
+package com.company.Fundamentals;
 
 public class strings {
 
