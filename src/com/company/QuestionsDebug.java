@@ -6,9 +6,47 @@ import java.util.*;
 
 public class QuestionsDebug {
     public static void main(String[] args) throws java.lang.Exception {
-        int[] arr = {3, 4, -1, 1};
-        System.out.println(firstMissingPositive(arr));
+        int[] arr = {12, 23, 36, 46, 62};
+        System.out.println(slowestKey(arr, "spuda"));
     }
+
+    public static char slowestKey(int[] rT, String kP) {
+        char maxChar = kP.charAt(0), currChar;
+        int maxT = rT[0], currT;
+        for (int i = 1; i < rT.length; i++) {
+            currT = rT[i] - rT[i - 1];
+            currChar = kP.charAt(i);
+            if (currT >= maxT) {
+                if (currT == maxT) maxChar = currChar > maxChar ? currChar : maxChar;
+                else maxChar = currChar;
+                maxT = currT;
+            }
+        }
+        return maxChar;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        if (n <= 1) return n;
+        int currL = 1, maxL = 1;
+        StringBuilder subS = new StringBuilder();
+        subS.append(s.charAt(0));
+        for (int i = 1; i < n; i++) {
+            char c = s.charAt(i);
+            String temp = Character.toString(c);
+            if (subS.indexOf(temp) == -1) {
+                subS.append(temp);
+                currL++;
+            } else {
+                int x = subS.indexOf(temp);
+                subS.delete(1, x + 1);
+                currL = subS.length();
+            }
+            maxL = Math.max(maxL, currL);
+        }
+        return maxL;
+    }
+
 
     public static int firstMissingPositive(int[] arr) {
         int i = 0;
