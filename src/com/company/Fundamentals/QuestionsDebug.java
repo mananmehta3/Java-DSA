@@ -8,27 +8,44 @@ public class QuestionsDebug {
     public static void main(String[] args) throws java.lang.Exception {
         // int[] arr = {3, 5, 9};
         // System.out.println(isPossible(arr));
-        isPossible();
+        strongElements();
+    }
+
+    public static void strongElements() {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            Arrays.sort(arr);
+            int gcd = arr[0];
+            for (int i = 1; i < n; i++) {
+                gcd = arr[i] % gcd;
+            }
+            if (gcd != 0) System.out.println(0);
+            else System.out.println(n);
+        }
     }
 
     public static void isPossible() {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
-        while(t-- > 0) {
+        while (t-- > 0) {
             int p = sc.nextInt();
-            int x = p%100;
-            int n = p/100;
-            if(n>10) {
+            int x = p % 100;
+            int n = p / 100;
+            if (n > 10) {
                 System.out.println(-1);
                 // continue;
-            }
-            else if(n==10) {
-                if(x==0) System.out.println(10);
+            } else if (n == 10) {
+                if (x == 0) System.out.println(10);
                 else System.out.println(-1);
-            }
-            else {
-                if((x > 10) || ((x+n) > 10)) System.out.println(-1);
-                else System.out.println(x+n);
+            } else {
+                if ((x > 10) || ((x + n) > 10)) System.out.println(-1);
+                else System.out.println(x + n);
             }
         }
     }
