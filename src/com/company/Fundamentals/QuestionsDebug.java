@@ -6,8 +6,31 @@ import java.util.*;
 
 public class QuestionsDebug {
     public static void main(String[] args) throws java.lang.Exception {
-        int[] arr = {12, 23, 36, 46, 62};
-        System.out.println(slowestKey(arr, "spuda"));
+        // int[] arr = {3, 5, 9};
+        // System.out.println(isPossible(arr));
+        isPossible();
+    }
+
+    public static void isPossible() {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0) {
+            int p = sc.nextInt();
+            int x = p%100;
+            int n = p/100;
+            if(n>10) {
+                System.out.println(-1);
+                // continue;
+            }
+            else if(n==10) {
+                if(x==0) System.out.println(10);
+                else System.out.println(-1);
+            }
+            else {
+                if((x > 10) || ((x+n) > 10)) System.out.println(-1);
+                else System.out.println(x+n);
+            }
+        }
     }
 
     public static char slowestKey(int[] rT, String kP) {
